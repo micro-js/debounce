@@ -27,6 +27,7 @@ window.addEventListener('resize', debounce(relayout))
 
 - `fn` - The function you want to debounce
 - `time` - The time in milliseconds. Defaults to 0.
+- `leading` - Bool indicating whether or not you want it to fire on the leading edge (i.e. immediately, the first time its called). Defaults to false.
 
 **Returns:** A debounced version of `fn`.
 
