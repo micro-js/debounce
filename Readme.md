@@ -28,7 +28,7 @@ window.addEventListener('resize', debounce(relayout))
 - `fn` - The function you want to debounce
 - `time` - The time in milliseconds. Defaults to 0.
 
-**Returns:** A debounced version of `fn`.
+**Returns:** A debounced version of `fn`. Each time `fn` is called, it will return a `cancel` function that you can use to cancel the invocation of `fn`.
 
 ## License
 
