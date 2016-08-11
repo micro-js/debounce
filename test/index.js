@@ -24,44 +24,23 @@ test('should work', function (t) {
   })
 })
 
-test('leading should work', function (t) {
+test('should debounce properly', function (t) {
   var n = 0
+
   function fn () { n++ }
-  var debounced = debounce(fn, 0, true)
+
+  var debounced = debounce(fn, 1000)
 
   debounced()
-  debounced()
-  debounced()
-  t.equal(n, 1)
-
-  setTimeout(function () {
-    t.equal(n, 2)
+  setTimeout(debounced, 100)
+  setTimeout(debounced, 200)
+  setTimeout(debounced, 300)
+  setTimeout(() => {
+    t.equal(n, 1)
     debounced()
-    debounced()
-    t.equal(n, 3)
-
-    t.end()
-  }, 1)
-})
-
-test('recursive calling should be ok with leading debounce', function (t) {
-  var n = 0
-  var running = false
-  function fn () {
-    if (running) return debounced()
-    running = true
-    if (n === 0) debounced()
-    n++;
-    running = false
-  }
-
-  var debounced = debounce(fn, 0, true)
-
-  debounced()
-  t.equal(n, 1)
-
-  setTimeout(function () {
-    t.equal(n, 2)
-    t.end()
-  })
+    setTimeout(() => {
+      t.equal(n, 2)
+      t.end()
+    }, 1000)
+  }, 1500)
 })
