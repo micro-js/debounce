@@ -57,6 +57,11 @@ test('cancel should work', function (t) {
 
   setTimeout(function () {
     t.equal(n, 0)
-    t.end()
+
+    debounced()
+    setTimeout(function () {
+      t.equal(n, 1)
+      t.end()
+    }, 1100)
   }, 1000)
 })
